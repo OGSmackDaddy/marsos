@@ -52,6 +52,7 @@ jobs:
 
               echo '=== Staging marsOS Profile ==='
               cp -r /usr/share/archiso/configs/releng /tmp/marsos-profile
+              rm -rf /tmp/marsos-profile/efiboot/loader/entries/*
               cp -rf /profile/* /tmp/marsos-profile/
               mkdir -p /tmp/archiso-work
 
