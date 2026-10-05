@@ -20,9 +20,7 @@ file_permissions=(
   ["/etc/shadow"]="0:0:400"
   ["/etc/gshadow"]="0:0:400"
   ["/etc/sudoers.d"]="0:0:750"
-  ["/root"]="0:0:700"
-  ["/root/.automated_script.sh"]="0:0:755"
-  ["/usr/local/bin/choose-mirror"]="0:0:755"
+  ["/etc/sudoers.d/mars"]="0:0:440"
   ["/usr/bin/marsos-welcome"]="0:0:755"
   ["/usr/bin/marsos-cli"]="0:0:755"
 )

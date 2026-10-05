@@ -1,0 +1,13 @@
+root:x:0:root
+sys:x:3:bin,mars
+adm:x:4:mars
+wheel:x:998:mars
+audio:x:995:mars
+video:x:986:mars
+optical:x:990:mars
+storage:x:988:mars
+disk:x:996:mars
+input:x:97:mars
+power:x:98:mars
+network:x:90:mars
+mars:x:1000:
