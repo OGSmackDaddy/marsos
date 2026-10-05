@@ -3,14 +3,19 @@
 #  Base: Arch Linux (Rolling) | Desktop: KDE Plasma 6 (Wayland)
 # ==============================================================================
 
-# Core System & Zen Kernel (Tuned for ultra-low latency & responsiveness)
+# Core System & Kernels (Standard & Zen tuned for ultra-low latency)
 base
 base-devel
+linux
+linux-headers
 linux-zen
 linux-zen-headers
 linux-firmware
 amd-ucode
 intel-ucode
+mkinitcpio
+mkinitcpio-archiso
+arch-install-scripts
 sudo
 which
 efibootmgr
