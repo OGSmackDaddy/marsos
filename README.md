@@ -3,7 +3,7 @@
 > An Arch Linux distribution fusing macOS elegance with Martian Cyber aesthetics.
 
 [![Build marsOS Live ISO](https://github.com/OGSmackDaddy/marsos/actions/workflows/build-iso.yml/badge.svg)](https://github.com/OGSmackDaddy/marsos/actions/workflows/build-iso.yml)
-[![Latest Build Artifact](https://img.shields.io/badge/Live%20ISO-Download%20(2.96%20GB)-FF2A55?style=flat&logo=archlinux)](https://github.com/OGSmackDaddy/marsos/actions/runs/37273188041)
+[![Latest Build Artifact](https://img.shields.io/badge/Live%20ISO-Download%20(3.11%20GB)-FF2A55?style=flat&logo=archlinux)](https://github.com/OGSmackDaddy/marsos/actions/runs/37283438442)
 
 ---
 
@@ -11,7 +11,7 @@
 
 | Artifact | Version | Size | Direct Link |
 | :--- | :--- | :--- | :--- |
-| **marsOS Cyber Sol Edition** | `2026.10.05` | **2.96 GB** | [Download ISO from Actions Run #6](https://github.com/OGSmackDaddy/marsos/actions/runs/37273188041) *(Scroll to Artifacts)* |
+| **marsOS Cyber Sol Edition** | `2026.10.05` | **3.11 GB** | [Download ISO from Actions Run #10](https://github.com/OGSmackDaddy/marsos/actions/runs/37283438442) *(Scroll to Artifacts)* |
 
 ### How to Flash:
 - **Windows:** Download [Rufus](https://rufus.ie/), choose your USB flash drive, load the `.iso`, and select **DD Image mode**.
