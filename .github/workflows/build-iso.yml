@@ -38,12 +38,22 @@ jobs:
             archlinux:latest \
             /bin/bash -c "
               set -euo pipefail
-              echo '=== Initializing Pacman Mirrors & Keyring ==='
+              echo '=== Setting Up Official Pacman Mirrors ==='
               echo 'Server = https://geo.mirror.pkgbuild.com/\$repo/os/\$arch' > /etc/pacman.d/mirrorlist
               echo 'Server = https://mirror.rackspace.com/archlinux/\$repo/os/\$arch' >> /etc/pacman.d/mirrorlist
+
+              echo '=== Refreshing Arch Keyring ==='
               pacman -Sy --noconfirm archlinux-keyring
               pacman-key --init
               pacman-key --populate archlinux
+
+              echo '=== Adding Chaotic-AUR Keyring & Mirrors (for Calamares) ==='
+              pacman-key --recv-key 3056513887B78AEB --keyserver keyserver.ubuntu.com || pacman-key --recv-key 3056513887B78AEB --keyserver hkps://keyserver.ubuntu.com
+              pacman-key --lsign-key 3056513887B78AEB
+              pacman -U --noconfirm 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst'
+              pacman -U --noconfirm 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst'
+
+              echo '=== Installing Build Dependencies ==='
               pacman -Syu --noconfirm --needed archiso git e2fsprogs dosfstools squashfs-tools
 
               echo '=== Staging marsOS Profile ==='
