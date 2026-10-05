@@ -2,7 +2,24 @@
 > **The Most Beautiful & Clean Linux Distro Ever Seen.**
 > An Arch Linux distribution fusing macOS elegance with Martian Cyber aesthetics.
 
-![marsOS Banner](assets/marsos-banner.png)
+[![Build marsOS Live ISO](https://github.com/OGSmackDaddy/marsos/actions/workflows/build-iso.yml/badge.svg)](https://github.com/OGSmackDaddy/marsos/actions/workflows/build-iso.yml)
+[![Latest Build Artifact](https://img.shields.io/badge/Live%20ISO-Download%20(2.96%20GB)-FF2A55?style=flat&logo=archlinux)](https://github.com/OGSmackDaddy/marsos/actions/runs/37273188041)
+
+---
+
+## 💾 Quick Download & Flash
+
+| Artifact | Version | Size | Direct Link |
+| :--- | :--- | :--- | :--- |
+| **marsOS Cyber Sol Edition** | `2026.10.05` | **2.96 GB** | [Download ISO from Actions Run #6](https://github.com/OGSmackDaddy/marsos/actions/runs/37273188041) *(Scroll to Artifacts)* |
+
+### How to Flash:
+- **Windows:** Download [Rufus](https://rufus.ie/), choose your USB flash drive, load the `.iso`, and select **DD Image mode**.
+- **Cross-Platform:** Use [BalenaEtcher](https://etcher.balena.io/) or **Raspberry Pi Imager** (`Choose OS` -> `Use custom`).
+- **Linux/macOS:**
+  ```bash
+  sudo dd if=marsos-cybersol-2026.10.05-x86_64.iso of=/dev/sdX bs=4M status=progress oflag=sync
+  ```
 
 ---
 
