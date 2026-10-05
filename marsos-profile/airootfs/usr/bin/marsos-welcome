@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+# ==============================================================================
+# marsos-welcome — First Boot & Live Environment Welcome Assistant
+# ==============================================================================
+
+RED="\033[38;2;255;42;85m"
+AMBER="\033[38;2;255;107;0m"
+BOLD="\033[1m"
+RESET="\033[0m"
+
+clear
+echo -e "${RED}${BOLD}"
+cat << "EOF"
+  __  __   ____  ____   _____  ___   _____
+ |  \/  | /    \|    \ / ___/ /   \ / ___/
+ |      ||  o  ||  D  (   \_ |     (   \_ 
+ | |\/| ||     ||    / \__  ||  O  |\__  |
+ | |  | ||  _  ||    \ /  \ ||     |/  \ |
+ |_|  |_||__|__||__|\_\\____/ \___/ \____/
+EOF
+echo -e "${AMBER} Welcome to the marsOS Cyber Sol Live Environment!${RESET}"
+echo -e " ----------------------------------------------------"
+echo -e " You are running a live session powered by Arch Linux"
+echo -e " with KDE Plasma 6 Wayland and macOS-styled ergonomics."
+echo ""
+echo -e " Quick Shortcuts:"
+echo -e "   • ${BOLD}Super + Space${RESET}    : Open Martian Spotlight (KRunner)"
+echo -e "   • ${BOLD}Super + T${RESET}        : Open Cyber Sol Konsole"
+echo -e "   • ${BOLD}marsos-cli info${RESET}  : View system telemetry"
+echo ""
+
+if [[ -f "/usr/bin/calamares" ]]; then
+    read -p "Would you like to start the Calamares installer now? [y/N]: " -n 1 -r
+    echo ""
+    if [[ $REPLY =~ ^[Yy]$ ]]; then
+        sudo -E calamares &
+    fi
+fi

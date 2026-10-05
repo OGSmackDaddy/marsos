@@ -1,0 +1,37 @@
+format = """
+[╭─](bold #FF2A55)$os$directory$git_branch$git_status$package$cmd_duration
+[╰─](bold #FF2A55)$character"""
+
+add_newline = true
+
+[os]
+disabled = false
+style = "bold #FF2A55"
+format = "[$symbol marsOS]($style) "
+
+[os.symbols]
+Arch = "🔴"
+
+[directory]
+style = "bold #FF6B00"
+format = "[in $path]($style) "
+truncation_length = 3
+truncation_symbol = "…/"
+
+[git_branch]
+style = "bold #FF2A55"
+symbol = " "
+format = "[$symbol$branch]($style) "
+
+[git_status]
+style = "bold #FF9500"
+format = "([$all_status$ahead_behind]($style) )"
+
+[cmd_duration]
+min_time = 500
+style = "bold #8E8E93"
+format = "[took $duration]($style) "
+
+[character]
+success_symbol = "[❯](bold #FF2A55)"
+error_symbol = "[✖](bold #FF3B30)"

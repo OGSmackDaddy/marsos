@@ -1,0 +1,141 @@
+#!/usr/bin/env bash
+# ==============================================================================
+# marsos-cli — The Official marsOS Management Utility
+# ==============================================================================
+
+set -e
+
+RED="\033[38;2;255;42;85m"
+AMBER="\033[38;2;255;107;0m"
+CYAN="\033[38;2;0;210;255m"
+GREEN="\033[38;2;52;199;89m"
+BOLD="\033[1m"
+RESET="\033[0m"
+
+function print_banner() {
+    echo -e "${RED}${BOLD}"
+    cat << "EOF"
+        __  __                 ___  ____  
+  /\/\ / _\/__\ /\/\    /\/\  / __\/ ___/ 
+ /    \\ \ / \//    \  /    \/ /   \___ \ 
+/ /\/\ \\_\\_// /\/\ \/ /\/\ \ \___/___) |
+\/    \/ \/   \/    \/\/    \/\____/\____/ 
+EOF
+    echo -e "${AMBER}  marsOS 2026.10 — Cyber Sol Edition${RESET}\n"
+}
+
+function show_help() {
+    print_banner
+    echo -e "${BOLD}Usage:${RESET} marsos <command>"
+    echo ""
+    echo -e "${BOLD}Commands:${RESET}"
+    echo -e "  ${RED}info${RESET}      Display system and distribution diagnostics"
+    echo -e "  ${RED}update${RESET}    Perform synergized Arch Linux system update"
+    echo -e "  ${RED}doctor${RESET}    Scan hardware drivers, audio stack, and services"
+    echo -e "  ${RED}theme${RESET}     Reset or re-apply Cyber Sol desktop configuration"
+    echo -e "  ${RED}install${RESET}   Launch the Calamares live installer GUI"
+    echo -e "  ${RED}help${RESET}      Show this message"
+    echo ""
+}
+
+function cmd_info() {
+    print_banner
+    echo -e "${BOLD}OS:${RESET}              marsOS 2026 (Cyber Sol Edition)"
+    echo -e "${BOLD}Base:${RESET}            Arch Linux (Rolling Release)"
+    echo -e "${BOLD}Kernel:${RESET}          $(uname -r)"
+    echo -e "${BOLD}Session:${RESET}         ${XDG_SESSION_TYPE:-unknown} (${DESKTOP_SESSION:-KDE Plasma})"
+    echo -e "${BOLD}Uptime:${RESET}          $(uptime -p 2>/dev/null || uptime)"
+    echo -e "${BOLD}Architecture:${RESET}    $(uname -m)"
+    echo -e "${BOLD}Host:${RESET}            $(cat /sys/devices/virtual/dmi/id/product_name 2>/dev/null || hostname)"
+    echo ""
+}
+
+function cmd_update() {
+    print_banner
+    echo -e "${AMBER}[+] Checking internet connectivity...${RESET}"
+    if ! ping -c 1 archlinux.org &>/dev/null; then
+        echo -e "${RED}[-] No internet connection detected!${RESET}"
+        exit 1
+    fi
+
+    echo -e "${GREEN}[+] Syncing package databases and upgrading system...${RESET}"
+    sudo pacman -Syu
+
+    echo -e "${GREEN}[✓] System update completed!${RESET}"
+}
+
+function cmd_doctor() {
+    print_banner
+    echo -e "${BOLD}=== System Health Diagnostic ===${RESET}\n"
+
+    # PipeWire Check
+    echo -n -e "${BOLD}Audio (PipeWire): ${RESET}"
+    if systemctl --user is-active pipewire &>/dev/null; then
+        echo -e "${GREEN}ONLINE${RESET}"
+    else
+        echo -e "${RED}OFFLINE or NOT RUNNING${RESET}"
+    fi
+
+    # Display / Wayland Check
+    echo -n -e "${BOLD}Compositor:       ${RESET}"
+    if [[ "$XDG_SESSION_TYPE" == "wayland" ]]; then
+        echo -e "${GREEN}Wayland (Active & Hardware Accelerated)${RESET}"
+    else
+        echo -e "${AMBER}X11 or Fallback Session${RESET}"
+    fi
+
+    # Failed systemd services
+    echo -n -e "${BOLD}Failed Services:  ${RESET}"
+    FAILED=$(systemctl --failed --quiet --no-legend | wc -l)
+    if [ "$FAILED" -eq 0 ]; then
+        echo -e "${GREEN}None (All units healthy)${RESET}"
+    else
+        echo -e "${RED}${FAILED} failed service(s) detected. Run 'systemctl --failed' for details.${RESET}"
+    fi
+
+    # Vulkan / GPU
+    echo -n -e "${BOLD}Vulkan Support:   ${RESET}"
+    if command -v vulkaninfo &>/dev/null; then
+        echo -e "${GREEN}Available${RESET}"
+    else
+        echo -e "${AMBER}vulkan-tools not installed (optional)${RESET}"
+    fi
+    echo ""
+}
+
+function cmd_theme() {
+    echo -e "${AMBER}[+] Refreshing Cyber Sol Theme settings...${RESET}"
+    kbuildsycoca6 2>/dev/null || true
+    echo -e "${GREEN}[✓] Theme and plasma applets refreshed!${RESET}"
+}
+
+function cmd_install() {
+    echo -e "${AMBER}[+] Launching Calamares Installer...${RESET}"
+    sudo -E calamares
+}
+
+case "${1:-}" in
+    info)
+        cmd_info
+        ;;
+    update)
+        cmd_update
+        ;;
+    doctor)
+        cmd_doctor
+        ;;
+    theme)
+        cmd_theme
+        ;;
+    install)
+        cmd_install
+        ;;
+    help|--help|-h|"")
+        show_help
+        ;;
+    *)
+        echo -e "${RED}Unknown command: $1${RESET}"
+        show_help
+        exit 1
+        ;;
+esac

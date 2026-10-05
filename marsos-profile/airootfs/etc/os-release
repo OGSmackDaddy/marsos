@@ -1,0 +1,11 @@
+NAME="marsOS"
+PRETTY_NAME="marsOS 2026 (Cyber Sol Edition)"
+ID=marsos
+ID_LIKE=arch
+BUILD_ID=rolling
+ANSI_COLOR="38;2;255;42;85"
+HOME_URL="https://github.com/marsos/marsos"
+DOCUMENTATION_URL="https://github.com/marsos/marsos/wiki"
+SUPPORT_URL="https://github.com/marsos/marsos/discussions"
+BUG_REPORT_URL="https://github.com/marsos/marsos/issues"
+LOGO=marsos

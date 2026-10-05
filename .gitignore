@@ -1,0 +1,23 @@
+# Build artifacts & ISO outputs
+dist/
+out/
+work/
+*.iso
+*.img
+*.tar.gz
+*.tar.xz
+*.tar.zst
+
+# Work directories
+/tmp/archiso-work/
+/tmp/
+*.log
+
+# OS & Editor files
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+*.swp
+*~

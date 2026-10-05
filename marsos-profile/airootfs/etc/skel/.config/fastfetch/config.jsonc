@@ -1,0 +1,94 @@
+{
+  "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+  "logo": {
+    "type": "raw",
+    "source": "              .---.\n           .-'     '-.\n         .'   _..._   '.\n        /   .'     '.   \\\n       :   /   .-.   \\   :\n       |  :   ( 🔴 )  :  |\n       :   \\   '-'   /   :\n        \\   '.     .'   /\n         '.   '---'   .'\n           '-.     .-'\n              '---'\n          m a r s O S\n",
+    "color": {
+      "1": "38;2;255;42;85",
+      "2": "38;2;255;107;0"
+    },
+    "padding": {
+      "top": 1,
+      "left": 2,
+      "right": 4
+    }
+  },
+  "display": {
+    "separator": "  ➜  ",
+    "color": {
+      "keys": "38;2;255;42;85",
+      "title": "38;2;255;107;0"
+    }
+  },
+  "modules": [
+    "title",
+    {
+      "type": "custom",
+      "format": "──────────────────────────────────────────"
+    },
+    {
+      "type": "os",
+      "key": "OS",
+      "format": "marsOS 2026.10 (Cyber Sol Edition)"
+    },
+    {
+      "type": "kernel",
+      "key": "Kernel",
+      "format": "{1} {2} (Zen / Low Latency)"
+    },
+    {
+      "type": "uptime",
+      "key": "Uptime"
+    },
+    {
+      "type": "packages",
+      "key": "Packages",
+      "format": "{1} (pacman)"
+    },
+    {
+      "type": "shell",
+      "key": "Shell"
+    },
+    {
+      "type": "de",
+      "key": "Desktop",
+      "format": "KDE Plasma 6 (Wayland Compositor)"
+    },
+    {
+      "type": "wm",
+      "key": "Window Manager",
+      "format": "KWin (macOS Traffic Lights + Glass Blur)"
+    },
+    {
+      "type": "theme",
+      "key": "Theme",
+      "format": "Cyber Sol OLED (Kvantum Glass)"
+    },
+    {
+      "type": "icons",
+      "key": "Icons",
+      "format": "marsOS Papirus Crimson"
+    },
+    {
+      "type": "font",
+      "key": "Typography",
+      "format": "Inter Display (UI) + JetBrains Mono (Terminal)"
+    },
+    {
+      "type": "cpu",
+      "key": "Processor"
+    },
+    {
+      "type": "gpu",
+      "key": "Graphics"
+    },
+    {
+      "type": "memory",
+      "key": "Memory"
+    },
+    {
+      "type": "colors",
+      "symbol": "circle"
+    }
+  ]
+}

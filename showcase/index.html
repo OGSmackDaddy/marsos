@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>marsOS — Cyber Sol Edition | Interactive Showcase</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="theme-crimson">
+  <!-- Top Bar (macOS unified panel) -->
+  <header id="top-bar" class="top-bar">
+    <div class="top-bar-left">
+      <button id="mars-menu-btn" class="menu-item mars-logo-btn" title="marsOS Menu">
+        <img src="assets/marsos-logo.png" alt="marsOS" class="top-bar-logo" />
+      </button>
+      <div class="app-menus" id="app-menus">
+        <span class="active-app-name" id="active-app-name">marsOS</span>
+        <button class="menu-item">File</button>
+        <button class="menu-item">Edit</button>
+        <button class="menu-item">View</button>
+        <button class="menu-item">Window</button>
+        <button class="menu-item">Help</button>
+      </div>
+    </div>
+
+    <div class="top-bar-center">
+      <span class="distro-pill" id="distro-pill">marsOS 2026 • Cyber Sol</span>
+    </div>
+
+    <div class="top-bar-right">
+      <div class="telemetry-pill" title="System Telemetry">
+        <span class="telemetry-item"><span class="telemetry-icon">⚡</span> CPU <b id="cpu-stat">12%</b></span>
+        <span class="telemetry-item"><span class="telemetry-icon">🧠</span> RAM <b id="ram-stat">2.4G</b></span>
+      </div>
+      <button class="icon-btn" id="search-trigger" title="Spotlight / KRunner (Cmd+Space)">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+      </button>
+      <button class="icon-btn" id="control-center-trigger" title="Control Center">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="21" x2="4" y2="14"></line><line x1="4" y1="10" x2="4" y2="3"></line><line x1="12" y1="21" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="3"></line><line x1="20" y1="21" x2="20" y2="16"></line><line x1="20" y1="12" x2="20" y2="3"></line><line x1="1" y1="14" x2="7" y2="14"></line><line x1="9" y1="8" x2="15" y2="8"></line><line x1="17" y1="16" x2="23" y2="16"></line></svg>
+      </button>
+      <button class="icon-btn" id="wifi-indicator" title="Wi-Fi 6E (Connected)">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12.55a11 11 0 0 1 14.08 0"></path><path d="M1.42 9a16 16 0 0 1 21.16 0"></path><path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path><line x1="12" y1="20" x2="12.01" y2="20"></line></svg>
+      </button>
+      <div class="clock" id="clock" title="Sol Time">Thu Oct 4 22:30</div>
+    </div>
+  </header>
+
+  <!-- Mars Apple Menu Dropdown -->
+  <div id="mars-dropdown" class="glass-dropdown hidden">
+    <div class="dropdown-item bold-item" id="about-marsos-item">About marsOS…</div>
+    <div class="dropdown-separator"></div>
+    <div class="dropdown-item" id="system-settings-item">System Settings…</div>
+    <div class="dropdown-item" id="install-distro-item">Install to Disk (Calamares)…</div>
+    <div class="dropdown-separator"></div>
+    <div class="dropdown-item" id="toggle-build-hub">Distro Build & ISO Hub…</div>
+    <div class="dropdown-separator"></div>
+    <div class="dropdown-item">Sleep</div>
+    <div class="dropdown-item">Restart System…</div>
+    <div class="dropdown-item danger-item">Shut Down…</div>
+  </div>
+
+  <!-- Control Center Panel -->
+  <div id="control-center" class="control-center-panel glass-dropdown hidden">
+    <div class="cc-header">
+      <span class="cc-title">Martian Control Center</span>
+      <span class="cc-status-dot online"></span>
+    </div>
+    <div class="cc-grid">
+      <div class="cc-tile active" id="tile-wifi">
+        <div class="cc-tile-icon">📶</div>
+        <div class="cc-tile-info">
+          <div class="cc-tile-label">Wi-Fi 6E</div>
+          <div class="cc-tile-sub">ARES-ORBIT-5G</div>
+        </div>
+      </div>
+      <div class="cc-tile active" id="tile-bluetooth">
+        <div class="cc-tile-icon">⚡</div>
+        <div class="cc-tile-info">
+          <div class="cc-tile-label">Wayland 120Hz</div>
+          <div class="cc-tile-sub">KWin Low-Latency</div>
+        </div>
+      </div>
+      <div class="cc-tile" id="tile-zen">
+        <div class="cc-tile-icon">🚀</div>
+        <div class="cc-tile-info">
+          <div class="cc-tile-label">Zen Governor</div>
+          <div class="cc-tile-sub">Performance</div>
+        </div>
+      </div>
+      <div class="cc-tile active" id="tile-glow">
+        <div class="cc-tile-icon">🔴</div>
+        <div class="cc-tile-info">
+          <div class="cc-tile-label">Cyber Glow</div>
+          <div class="cc-tile-sub">Active</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sliders -->
+    <div class="cc-slider-card">
+      <div class="slider-row">
+        <span>Display Brightness</span>
+        <span id="brightness-val">90%</span>
+      </div>
+      <input type="range" min="20" max="100" value="90" class="mars-slider" id="slider-brightness" />
+    </div>
+
+    <div class="cc-slider-card">
+      <div class="slider-row">
+        <span>PipeWire Master Audio</span>
+        <span id="volume-val">78%</span>
+      </div>
+      <input type="range" min="0" max="100" value="78" class="mars-slider" id="slider-volume" />
+    </div>
+
+    <div class="cc-media-card">
+      <div class="media-art">🪐</div>
+      <div class="media-details">
+        <div class="media-title">Atmospheric Dunes (Synth Ambient)</div>
+        <div class="media-artist">marsOS Soundscapes</div>
+      </div>
+      <button class="media-play-btn" id="media-play-btn">▶</button>
+    </div>
+  </div>
+
+  <!-- Spotlight / KRunner Modal -->
+  <div id="spotlight-overlay" class="spotlight-overlay hidden">
+    <div class="spotlight-box glass-card">
+      <div class="spotlight-search-row">
+        <svg class="spotlight-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <input type="text" id="spotlight-input" placeholder="Search apps, files, calculations, or run commands..." autofocus />
+        <span class="spotlight-badge">ESC to close</span>
+      </div>
+      <div class="spotlight-results" id="spotlight-results">
+        <!-- populated dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Desktop Canvas Area -->
+  <main id="desktop" class="desktop-surface">
+    <!-- Desktop Icons -->
+    <div class="desktop-icons">
+      <div class="desktop-icon" id="desk-calamares" tabindex="0">
+        <div class="icon-wrapper installer-icon">🔴</div>
+        <span class="icon-label">Install marsOS</span>
+      </div>
+      <div class="desktop-icon" id="desk-buildhub" tabindex="0">
+        <div class="icon-wrapper buildhub-icon">⚡</div>
+        <span class="icon-label">Distro Hub</span>
+      </div>
+      <div class="desktop-icon" id="desk-readme" tabindex="0">
+        <div class="icon-wrapper doc-icon">📜</div>
+        <span class="icon-label">Architecture.md</span>
+      </div>
+    </div>
+
+    <!-- WINDOW 1: Cyber Sol Konsole (Interactive Terminal) -->
+    <div class="os-window glass-window" id="win-terminal">
+      <div class="window-titlebar">
+        <div class="traffic-lights">
+          <button class="traffic-btn close" title="Close" data-target="win-terminal"></button>
+          <button class="traffic-btn minimize" title="Minimize" data-target="win-terminal"></button>
+          <button class="traffic-btn maximize" title="Maximize" data-target="win-terminal"></button>
+        </div>
+        <div class="window-title">konsole — zsh (mars@cyber-sol)</div>
+        <div class="window-actions">
+          <span class="window-badge">Wayland Native</span>
+        </div>
+      </div>
+      <div class="window-content terminal-content" id="terminal-body">
+        <div id="terminal-history"></div>
+        <div class="terminal-prompt-row">
+          <span class="prompt-sig">[🔴 marsOS]</span>
+          <span class="prompt-path">in ~/universe</span>
+          <span class="prompt-arrow">❯</span>
+          <input type="text" id="terminal-input" autocomplete="off" spellcheck="false" />
+        </div>
+      </div>
+    </div>
+
+    <!-- WINDOW 2: Calamares Graphical Installer -->
+    <div class="os-window glass-window hidden" id="win-installer">
+      <div class="window-titlebar">
+        <div class="traffic-lights">
+          <button class="traffic-btn close" title="Close" data-target="win-installer"></button>
+          <button class="traffic-btn minimize" title="Minimize" data-target="win-installer"></button>
+          <button class="traffic-btn maximize" title="Maximize" data-target="win-installer"></button>
+        </div>
+        <div class="window-title">Install marsOS 2026 — Calamares Live Installer</div>
+        <div class="window-actions">
+          <span class="window-badge installer-tag">Live Installer</span>
+        </div>
+      </div>
+      <div class="window-content installer-body">
+        <div class="installer-sidebar">
+          <div class="installer-step active" data-step="1">1. Welcome</div>
+          <div class="installer-step" data-step="2">2. Partitions</div>
+          <div class="installer-step" data-step="3">3. Users</div>
+          <div class="installer-step" data-step="4">4. Summary</div>
+          <div class="installer-step" data-step="5">5. Install</div>
+        </div>
+        <div class="installer-main">
+          <div class="step-view" id="step-1">
+            <div class="calamares-hero">
+              <img src="assets/marsos-logo.png" alt="Logo" class="calamares-logo" />
+              <h2>Welcome to marsOS 2026.10</h2>
+              <p class="calamares-desc">
+                The next-generation Arch Linux distribution engineered for uncompromising speed,
+                macOS elegance, and Martian Cyber aesthetics.
+              </p>
+            </div>
+            <div class="calamares-features">
+              <div class="feature-item">
+                <span class="feat-icon">⚡</span>
+                <div>
+                  <b>Linux Zen Kernel</b>
+                  <p>Tuned for 120Hz/144Hz high-refresh desktop responsiveness</p>
+                </div>
+              </div>
+              <div class="feature-item">
+                <span class="feat-icon">🛡️</span>
+                <div>
+                  <b>Btrfs Snapshots</b>
+                  <p>Automatic system rollback before every pacman update</p>
+                </div>
+              </div>
+              <div class="feature-item">
+                <span class="feat-icon">🎨</span>
+                <div>
+                  <b>Unified Cyber Sol Theme</b>
+                  <p>Seamless Kvantum Qt6 & Libadwaita dark glass harmony</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="step-view hidden" id="step-2">
+            <h3>Storage & Partitioning</h3>
+            <p>Select target installation drive:</p>
+            <div class="drive-card selected">
+              <div class="drive-icon">💾</div>
+              <div class="drive-details">
+                <b>NVMe SSD 1TB (Samsung 990 Pro)</b>
+                <span>Erase disk and install marsOS with Btrfs root subvolumes + zRAM swap</span>
+              </div>
+            </div>
+            <div class="partition-preview">
+              <div class="part efi" style="width: 10%;">EFI (1GB)</div>
+              <div class="part btrfs" style="width: 90%;">marsOS Btrfs Root (999GB)</div>
+            </div>
+          </div>
+
+          <div class="step-view hidden" id="step-3">
+            <h3>User Setup</h3>
+            <div class="form-group">
+              <label>Your Name:</label>
+              <input type="text" class="mars-input" value="Ares Commander" />
+            </div>
+            <div class="form-group">
+              <label>Username:</label>
+              <input type="text" class="mars-input" value="ares" />
+            </div>
+            <div class="form-group">
+              <label>Computer Name:</label>
+              <input type="text" class="mars-input" value="marsos-zenith" />
+            </div>
+          </div>
+
+          <div class="step-view hidden" id="step-4">
+            <h3>Ready to Install</h3>
+            <div class="summary-box">
+              <p>• Location: America/New_York (Automatic)</p>
+              <p>• Keyboard: US English</p>
+              <p>• Target: /dev/nvme0n1 (Btrfs subvolumes: @, @home, @snapshots)</p>
+              <p>• Bootloader: systemd-boot with Plymouth Cyber Sol Splash</p>
+            </div>
+          </div>
+
+          <div class="step-view hidden" id="step-5">
+            <h3>Installing marsOS...</h3>
+            <div class="progress-container">
+              <div class="progress-bar" id="install-progress"></div>
+            </div>
+            <p id="install-status-text">Unpacking Arch Linux root filesystem...</p>
+          </div>
+
+          <div class="installer-nav">
+            <button class="nav-btn prev" id="btn-prev-step" disabled>Previous</button>
+            <button class="nav-btn next primary-btn" id="btn-next-step">Next ❯</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WINDOW 3: System Settings & Distro Architecture Hub -->
+    <div class="os-window glass-window hidden" id="win-settings">
+      <div class="window-titlebar">
+        <div class="traffic-lights">
+          <button class="traffic-btn close" title="Close" data-target="win-settings"></button>
+          <button class="traffic-btn minimize" title="Minimize" data-target="win-settings"></button>
+          <button class="traffic-btn maximize" title="Maximize" data-target="win-settings"></button>
+        </div>
+        <div class="window-title">System Settings & Architecture Hub</div>
+        <div class="window-actions">
+          <span class="window-badge">KDE Plasma 6.2</span>
+        </div>
+      </div>
+      <div class="window-content settings-body">
+        <div class="settings-sidebar">
+          <button class="settings-tab active" data-tab="about">About marsOS</button>
+          <button class="settings-tab" data-tab="appearance">Appearance & Colors</button>
+          <button class="settings-tab" data-tab="build">ISO Build & CI Guide</button>
+          <button class="settings-tab" data-tab="shortcuts">Keybindings</button>
+        </div>
+        <div class="settings-content">
+          <!-- About Tab -->
+          <div class="tab-pane active" id="tab-about">
+            <div class="about-hero">
+              <img src="assets/marsos-logo.png" alt="marsOS" class="about-logo" />
+              <div class="about-text">
+                <h2>marsOS</h2>
+                <div class="version-tag">Version 2026.10 (Cyber Sol Edition)</div>
+                <p>Engineered on top of Arch Linux Rolling Release with bleeding-edge Wayland graphics and macOS-grade ergonomics.</p>
+              </div>
+            </div>
+            <div class="spec-grid">
+              <div class="spec-card">
+                <span class="spec-label">Linux Kernel</span>
+                <span class="spec-val">6.12.8-zen1-1-zen</span>
+              </div>
+              <div class="spec-card">
+                <span class="spec-label">Desktop Environment</span>
+                <span class="spec-val">KDE Plasma 6.2.2 (Wayland)</span>
+              </div>
+              <div class="spec-card">
+                <span class="spec-label">Window Manager</span>
+                <span class="spec-val">KWin (macOS Traffic Lights + Glass Blur)</span>
+              </div>
+              <div class="spec-card">
+                <span class="spec-label">Audio Server</span>
+                <span class="spec-val">PipeWire 1.2.6 + WirePlumber</span>
+              </div>
+              <div class="spec-card">
+                <span class="spec-label">Package Manager</span>
+                <span class="spec-val">Pacman 6.1 (with Parallel Downloads)</span>
+              </div>
+              <div class="spec-card">
+                <span class="spec-label">Default Shell</span>
+                <span class="spec-val">Zsh 5.9 + Starship Cyber Prompt</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Appearance Tab -->
+          <div class="tab-pane hidden" id="tab-appearance">
+            <h3>Accent Color & Theme</h3>
+            <p>Select your favorite Martian accent system:</p>
+            <div class="accent-picker">
+              <div class="accent-chip active" data-theme="crimson" style="background: #FF2A55;">
+                <span>Cyber Crimson</span>
+              </div>
+              <div class="accent-chip" data-theme="amber" style="background: #FF6B00;">
+                <span>Martian Amber</span>
+              </div>
+              <div class="accent-chip" data-theme="gold" style="background: #FFB300;">
+                <span>Sol Gold</span>
+              </div>
+              <div class="accent-chip" data-theme="neon" style="background: #00F0FF;">
+                <span>Orbit Cyan</span>
+              </div>
+            </div>
+
+            <h3 style="margin-top: 25px;">Window Decoration Style</h3>
+            <div class="window-decor-preview">
+              <div class="decor-card active">
+                <div class="mini-traffic-lights">
+                  <span class="tl red"></span>
+                  <span class="tl yellow"></span>
+                  <span class="tl green"></span>
+                </div>
+                <b>macOS Left Traffic Lights (marsOS Default)</b>
+                <p>Window controls neatly tucked on top-left in glowing gemstone colors.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Build Tab -->
+          <div class="tab-pane hidden" id="tab-build">
+            <h3>Building the Official Live ISO</h3>
+            <p>Everything is pre-scaffolded in this repository so you can build on Windows, Linux, or in GitHub Actions!</p>
+            
+            <div class="code-box">
+              <div class="code-header">Option 1: GitHub Actions CI (Recommended for Windows)</div>
+              <code>
+# Push to your GitHub repo and GitHub Actions automatically builds the ISO:
+git add .
+git commit -m "Build marsOS ISO"
+git push origin main
+# Download the compiled bootable .iso in the 'Actions' tab!
+              </code>
+            </div>
+
+            <div class="code-box">
+              <div class="code-header">Option 2: Windows 1-Click Docker Build</div>
+              <code>
+# Make sure Docker Desktop is running, then run:
+cd build-docker
+.\build.bat
+# Output is saved to dist/marsos-cybersol-x86_64.iso
+              </code>
+            </div>
+          </div>
+
+          <!-- Shortcuts Tab -->
+          <div class="tab-pane hidden" id="tab-shortcuts">
+            <h3>Martian Keybindings</h3>
+            <table class="shortcuts-table">
+              <tr>
+                <td><kbd>Super</kbd> + <kbd>Space</kbd></td>
+                <td>Summon Martian Spotlight (KRunner)</td>
+              </tr>
+              <tr>
+                <td><kbd>Super</kbd> + <kbd>T</kbd></td>
+                <td>Open Cyber Sol Konsole</td>
+              </tr>
+              <tr>
+                <td><kbd>Super</kbd> + <kbd>E</kbd></td>
+                <td>Open Dolphin File Manager</td>
+              </tr>
+              <tr>
+                <td><kbd>Super</kbd> + <kbd>I</kbd></td>
+                <td>Launch Calamares Live Installer</td>
+              </tr>
+              <tr>
+                <td><kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>T</kbd></td>
+                <td>Quick Terminal</td>
+              </tr>
+              <tr>
+                <td><kbd>Super</kbd> + <kbd>L</kbd></td>
+                <td>Lock Screen with Frosted Martian Horizon</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WINDOW 4: Architecture Document Reader -->
+    <div class="os-window glass-window hidden" id="win-doc">
+      <div class="window-titlebar">
+        <div class="traffic-lights">
+          <button class="traffic-btn close" title="Close" data-target="win-doc"></button>
+          <button class="traffic-btn minimize" title="Minimize" data-target="win-doc"></button>
+          <button class="traffic-btn maximize" title="Maximize" data-target="win-doc"></button>
+        </div>
+        <div class="window-title">Kate — Architecture.md</div>
+        <div class="window-actions">
+          <span class="window-badge">Read-Only</span>
+        </div>
+      </div>
+      <div class="window-content doc-body">
+        <h2>🔴 The marsOS Distribution Architecture</h2>
+        <p><b>marsOS</b> is an autonomous, rolling-release operating system based on Arch Linux. Its fundamental mission is providing the single cleanest, most aesthetically refined workstation experience ever seen in the Linux landscape.</p>
+        
+        <h3>Key Architectural Pillars</h3>
+        <ul>
+          <li><b>macOS Ergonomics</b>: Top unified panel with native Qt/GTK Global Menu integration; floating frosted glass dock with dynamic magnification; left-aligned traffic light window control buttons.</li>
+          <li><b>Martian Cyber Sol Aesthetic</b>: OLED deep-black foundations, frosted Gaussian glass blur (30px), glowing electric crimson and atmospheric amber accents.</li>
+          <li><b>Zen Performance</b>: Powered by <code>linux-zen</code> kernel with low latency audio/video scheduling, zRAM compressed swap, and Btrfs snapshots.</li>
+          <li><b>Calamares 1-Click Installer</b>: Tailored live installation pipeline with full disk encryption and UEFI Secure Boot readiness.</li>
+        </ul>
+      </div>
+    </div>
+  </main>
+
+  <!-- Bottom Floating Glass Dock -->
+  <footer id="dock-container" class="dock-container">
+    <div class="glass-dock" id="dock">
+      <div class="dock-item" id="dock-launcher" title="marsOS Spotlight (Cmd+Space)">
+        <div class="dock-icon">
+          <img src="assets/marsos-logo.png" alt="Launcher" />
+        </div>
+        <span class="dock-tooltip">Launcher</span>
+      </div>
+
+      <div class="dock-item active" id="dock-terminal" title="Cyber Sol Konsole">
+        <div class="dock-icon terminal-dock-icon">
+          <span>&gt;_</span>
+        </div>
+        <span class="dock-dot"></span>
+        <span class="dock-tooltip">Konsole</span>
+      </div>
+
+      <div class="dock-item" id="dock-installer" title="Calamares Live Installer">
+        <div class="dock-icon installer-dock-icon">
+          <span>🔴</span>
+        </div>
+        <span class="dock-dot hidden" id="dot-installer"></span>
+        <span class="dock-tooltip">Install marsOS</span>
+      </div>
+
+      <div class="dock-item" id="dock-settings" title="System Settings">
+        <div class="dock-icon settings-dock-icon">
+          <span>⚙️</span>
+        </div>
+        <span class="dock-dot hidden" id="dot-settings"></span>
+        <span class="dock-tooltip">Settings</span>
+      </div>
+
+      <div class="dock-item" id="dock-doc" title="Architecture Docs">
+        <div class="dock-icon doc-dock-icon">
+          <span>📜</span>
+        </div>
+        <span class="dock-dot hidden" id="dot-doc"></span>
+        <span class="dock-tooltip">Architecture</span>
+      </div>
+
+      <div class="dock-separator"></div>
+
+      <div class="dock-item" id="dock-theme-toggle" title="Switch Theme Palette">
+        <div class="dock-icon theme-dock-icon">
+          <span>🎨</span>
+        </div>
+        <span class="dock-tooltip">Accents</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

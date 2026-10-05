@@ -1,0 +1,120 @@
+# ==============================================================================
+#  marsOS "Cyber Sol" Package Manifest
+#  Base: Arch Linux (Rolling) | Desktop: KDE Plasma 6 (Wayland)
+# ==============================================================================
+
+# Core System & Zen Kernel (Tuned for ultra-low latency & responsiveness)
+base
+base-devel
+linux-zen
+linux-zen-headers
+linux-firmware
+amd-ucode
+intel-ucode
+sudo
+which
+efibootmgr
+grub
+os-prober
+
+# Filesystems & Storage Utilities
+btrfs-progs
+dosfstools
+e2fsprogs
+exfatprogs
+f2fs-tools
+mtools
+ntfs-3g
+xfsprogs
+
+# Graphic Drivers & Accelerators (Vulkan + OpenGL)
+mesa
+vulkan-icd-loader
+vulkan-radeon
+vulkan-intel
+libva-mesa-driver
+mesa-vdpau
+xf86-video-amdgpu
+xf86-video-ati
+xf86-video-nouveau
+
+# Audio Engine (Modern PipeWire stack)
+pipewire
+pipewire-alsa
+pipewire-jack
+pipewire-pulse
+wireplumber
+pavucontrol-qt
+
+# Networking & Connectivity
+networkmanager
+network-manager-applet
+wireless_tools
+wpa_supplicant
+bluez
+bluez-utils
+curl
+wget
+git
+openssh
+rsync
+
+# Display Manager & KDE Plasma 6 Wayland Stack
+sddm
+sddm-kcm
+plasma-meta
+plasma-desktop
+plasma-wayland-session
+plasma-nm
+plasma-pa
+powerdevil
+bluedevil
+kscreen
+krunner
+plasma-systemmonitor
+qt5-wayland
+qt6-wayland
+polkit-kde-agent
+
+# Theming, Blur & Visual Architecture
+kvantum
+kvantum-qt5
+breeze
+breeze-gtk
+plymouth
+
+# Typography & Nerd Fonts
+inter-font
+ttf-jetbrains-mono-nerd
+noto-fonts
+noto-fonts-cjk
+noto-fonts-emoji
+
+# Default marsOS Terminal & Utilities
+konsole
+zsh
+zsh-autosuggestions
+zsh-syntax-highlighting
+starship
+fastfetch
+htop
+neovim
+bat
+lsd
+
+# Productivity & Default Suite
+dolphin
+kate
+ark
+spectacle
+gwenview
+firefox
+
+# Live Media & Calamares Installer
+calamares
+arch-install-scripts
+boost-libs
+ckbcomp
+hwinfo
+parted
+upower

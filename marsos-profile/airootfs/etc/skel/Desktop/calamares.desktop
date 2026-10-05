@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=Install marsOS
+GenericName=Live Installer
+Comment=Install marsOS Cyber Sol Edition permanently onto this machine
+Exec=sudo -E calamares
+Icon=calamares
+Terminal=false
+StartupNotify=true
+Categories=Qt;System;
