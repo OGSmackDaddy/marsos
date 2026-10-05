@@ -57,7 +57,8 @@ jobs:
               pacman -Syu --noconfirm --needed archiso git e2fsprogs dosfstools squashfs-tools
 
               echo '=== Staging marsOS Profile ==='
-              cp -r /profile /tmp/marsos-profile
+              cp -r /usr/share/archiso/configs/releng /tmp/marsos-profile
+              cp -rf /profile/* /tmp/marsos-profile/
               mkdir -p /tmp/archiso-work
 
               echo '=== Building marsOS Live ISO ==='

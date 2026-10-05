@@ -16,7 +16,10 @@ which
 efibootmgr
 grub
 os-prober
+syslinux
+memtest86+
 memtest86+-efi
+edk2-shell
 
 # Filesystems & Storage Utilities
 btrfs-progs
