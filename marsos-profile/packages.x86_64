@@ -112,7 +112,6 @@ firefox
 
 # Live Media & Guided Installation Engine
 archinstall
-ckbcomp
 hwinfo
 parted
 upower

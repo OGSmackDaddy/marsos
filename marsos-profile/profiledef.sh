@@ -21,4 +21,5 @@ file_permissions=(
   ["/etc/sudoers.d/mars"]="0:0:440"
   ["/usr/bin/marsos-welcome"]="0:0:755"
   ["/usr/bin/marsos-cli"]="0:0:755"
+  ["/etc/skel/Desktop/install-marsos.desktop"]="1000:1000:755"
 )
