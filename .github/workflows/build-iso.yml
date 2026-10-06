@@ -56,6 +56,12 @@ jobs:
               cp -rf /profile/* /tmp/marsos-profile/
               mkdir -p /tmp/archiso-work
 
+              echo '=== Enabling Display Manager and Networking Services ==='
+              mkdir -p /tmp/marsos-profile/airootfs/etc/systemd/system/multi-user.target.wants
+              ln -sf /usr/lib/systemd/system/sddm.service /tmp/marsos-profile/airootfs/etc/systemd/system/display-manager.service
+              ln -sf /usr/lib/systemd/system/sddm.service /tmp/marsos-profile/airootfs/etc/systemd/system/multi-user.target.wants/sddm.service
+              ln -sf /usr/lib/systemd/system/NetworkManager.service /tmp/marsos-profile/airootfs/etc/systemd/system/multi-user.target.wants/NetworkManager.service
+
               echo '=== Building marsOS Live ISO ==='
               mkarchiso -v -w /tmp/archiso-work -o /out /tmp/marsos-profile
 

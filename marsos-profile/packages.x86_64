@@ -16,6 +16,7 @@ intel-ucode
 mkinitcpio
 mkinitcpio-archiso
 arch-install-scripts
+virtualbox-guest-utils-nox
 sudo
 which
 efibootmgr
